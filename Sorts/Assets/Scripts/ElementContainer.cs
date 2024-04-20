@@ -5,6 +5,9 @@ using UnityEngine;
 public class ElementContainer : MonoBehaviour
 {
     [SerializeField]
+    private AudioSource audio;
+
+    [SerializeField]
     private TextMeshPro tmp;
 
     [SerializeField]
@@ -31,11 +34,13 @@ public class ElementContainer : MonoBehaviour
 
     public void Select(Color color)
     {
+        audio.Play();
         spriteRenderer.color = color;
     }
 
     public void Deselect()
     {
+        audio.Stop();
         spriteRenderer.color = baseColor;
     }
 }

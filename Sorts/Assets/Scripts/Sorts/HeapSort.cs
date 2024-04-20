@@ -29,7 +29,7 @@ namespace Assets.Scripts.Sorts
                 && arr[right].Value
                 > arr[largest].Value)
             {
-                await BaseOperations.Select(right, VisualData.KnownColor);
+                await BaseOperations.Select(left, VisualData.KnownColor);
                 largest = right;
             }
 

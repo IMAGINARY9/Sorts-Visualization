@@ -33,6 +33,8 @@ namespace Assets.Scripts.Sorts
                     qEc = arr[q];
                     qEc.Select(VisualData.IterateColor);
                 }
+                else
+                    await BaseOperations.Select(i, VisualData.KnownColor);
             }
 
             await BaseOperations.Swap(q + 1, end);
@@ -49,10 +51,8 @@ namespace Assets.Scripts.Sorts
             {
                 int q = await Partition(arr, begin, end);
 
-                var t1 = Sort(arr, begin, q - 1);
-                var t2 = Sort(arr, q + 1, end);
-
-                await Task.WhenAll(t1, t2);
+                await Sort(arr, begin, q - 1);
+                await Sort(arr, q + 1, end);
             }
         }
     }

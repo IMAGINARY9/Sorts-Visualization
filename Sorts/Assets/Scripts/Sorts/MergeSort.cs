@@ -16,20 +16,18 @@ namespace Assets.Scripts.Sorts
 
             while (i <= middle && j <= end)
             {
-                var t1 = BaseOperations.Select(i, VisualData.KnownColor);
-                var t2 = BaseOperations.Select(j, VisualData.UnknownColor);
+                var t1 = BaseOperations.Select(i, VisualData.IterateColor);
+                var t2 = BaseOperations.Select(j, VisualData.IterateColor);
 
                 await Task.WhenAll(t1, t2);
 
                 if (arr[i].Value < arr[j].Value)
                 {
-                    await BaseOperations.Select(i, VisualData.HitColor);
                     X.Add(arr[i]);
                     i++;
                 }
                 else
                 {
-                    await BaseOperations.Select(j, VisualData.HitColor);
                     X.Add(arr[j]);
                     j++;
                 }
@@ -63,9 +61,10 @@ namespace Assets.Scripts.Sorts
 
                 int middle = (begin + end) / 2;
 
-                var t3 = BaseOperations.Select(middle, VisualData.RememberColor);
+                //var t3 = BaseOperations.Select(middle, VisualData.RememberColor);
 
-                await Task.WhenAll(t1, t2, t3);
+                await Task.WhenAll(t1, t2);//, t3);
+                await BaseOperations.Select(middle, VisualData.RememberColor);
 
                 await Sort(arr, begin, middle);
                 await Sort(arr, middle + 1, end);
